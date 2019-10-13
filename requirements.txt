@@ -1,0 +1,4 @@
+flask
+altair
+pandas
+numpy
