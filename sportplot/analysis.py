@@ -9,7 +9,7 @@ def calc_thresholds(lt):
     # Upper limits for each zone as a ratio of latate threshold
     # Zones are:
     #     Zone 1: below 85%
-    #     Zone 2: between 85% to 89%
+    #     Zone 2: between 85% to 8%9
     #     Zone 3: Between 89% to 94
     #     Zone 4: between 94 to 99
     #     Zone 5a: between 100 to 102
