@@ -25,7 +25,6 @@ def get_time_in_zone(df, lt):
     hr = df.hr[1:]
     dt = df.time.diff() / np.timedelta64(1, 's')
     dt = dt[1:]
-    print(dt.head())
     zones = calc_thresholds(lt)
     time_in_zone = np.zeros(7)
     time_in_zone[0] = np.sum(dt[hr <= zones[0]])
