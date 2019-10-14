@@ -12,6 +12,21 @@ ActSummary = namedtuple('ActSummary',
 METERS_TO_FEET = 3.28084
 
 
+def timedelta_to_string(dt):
+    """
+    Return hh:min:sec from a timedelta64.
+
+    There doesn't seem to be a standard pandas or numpy function to
+    do this strangely.
+    """
+    total_sec = dt / np.timedelta64(1, 's')
+    hours = int(total_sec // 3600)
+    minutes = int((total_sec // 60) % 60)
+    seconds = int(total_sec % 60)
+
+    return '{}:{:02}:{:02}'.format(hours, minutes, seconds)
+
+
 class ActData:
     def __init__(self, points):
         self.df = pd.DataFrame(points)
@@ -59,12 +74,13 @@ class ActData:
         summ_text['ascent'] = '{:.1f}'.format(summ.ascent)
         summ_text['dist'] = '{:.1f}'.format(summ.dist)
         summ_text['ave_hr'] = '{:.1f}'.format(summ.ave_hr)
-        summ_text['time'] = summ.time.strftime('%H:%M:%S')
+        summ_text['time'] = timedelta_to_string(summ.time)
+
         return summ_text
 
     def get_summary(self):
         dist = np.max(self.df.distance)
-        time = np.max(self.df.time)
+        time = np.max(self.df.time - self.df.time[0])
         ave_hr = np.mean(self.df.hr)
         ascent = 0.0
 
