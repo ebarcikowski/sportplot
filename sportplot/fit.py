@@ -4,6 +4,7 @@ Process data using fit files instead of gpx, using fitparse package
 import fitparse
 import pandas as pd
 import numpy as np
+import os
 
 
 class GenFitFile(fitparse.FitFile):
@@ -13,7 +14,7 @@ class GenFitFile(fitparse.FitFile):
         super(GenFitFile, self).__init__(fn)
 
         self.fn = fn
-        self.fn_id = fn[:-4]
+        self.file_id = os.path.basename(fn[:-4])
 
     def _get_first_entry(self, tag):
         return [f for f in self.messages(names=tag)][0].get_values()
@@ -76,7 +77,7 @@ def main():
     df = cff.records_to_df()
     print(df.head())
     print(len(df))
-
+    print(cff.file_id)
 
 if __name__ == '__main__':
     main()
