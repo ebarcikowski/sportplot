@@ -5,9 +5,12 @@ import geopy.distance
 import pandas as pd
 import numpy as np
 from collections import namedtuple
+from config import LT, REST_HR, MAX_HR
+from sportplot.analysis import banister_trimp
+
 
 ActSummary = namedtuple('ActSummary',
-                        "dist time ascent ave_hr")
+                        "dist time ascent ave_hr trimp")
 
 METERS_TO_FEET = 3.28084
 
@@ -75,6 +78,7 @@ class ActData:
         summ_text['dist'] = '{:.1f}'.format(summ.dist)
         summ_text['ave_hr'] = '{:.1f}'.format(summ.ave_hr)
         summ_text['time'] = timedelta_to_string(summ.time)
+        summ_text['trimp'] = '{:.1f}'.format(summ.trimp)
 
         return summ_text
 
@@ -95,7 +99,8 @@ class ActData:
             if d_ele > 0:
                 ascent = ascent + d_ele
 
-        return ActSummary(dist, time, ascent, ave_hr)
+        trimp = banister_trimp(self.df, MAX_HR, REST_HR, True)
+        return ActSummary(dist, time, ascent, ave_hr, trimp)
 
 
 if __name__ == '__main__':

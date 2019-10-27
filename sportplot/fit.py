@@ -59,7 +59,24 @@ class CyclingFitFile(GenFitFile):
     FIELDS = {
         'position_lat': 'lat',
         'position_long': 'lon',
-        'timestamp': 'timestamp',
+        'timestamp': 'time',
+        'distance': 'distance',
+        'heart_rate': 'hr',
+        'enhanced_altitude': 'e_alt',
+        'altitude': 'alt',
+        'enhanced_speed': 'e_speed',
+    }
+
+    def __init__(self, fn):
+        super(CyclingFitFile, self).__init__(fn)
+
+
+class RunningFitFile(GenFitFile):
+
+    FIELDS = {
+        'position_lat': 'lat',
+        'position_long': 'lon',
+        'timestamp': 'time',
         'distance': 'distance',
         'heart_rate': 'hr',
         'enhanced_altitude': 'e_alt',
