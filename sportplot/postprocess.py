@@ -5,7 +5,7 @@ import geopy.distance
 import pandas as pd
 import numpy as np
 from collections import namedtuple
-from config import LT, REST_HR, MAX_HR
+from config import REST_HR, MAX_HR
 from sportplot.analysis import banister_trimp
 
 
