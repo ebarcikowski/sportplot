@@ -13,6 +13,7 @@ Strava or Training Peaks, as I never seem to be able to display the
 data that I really want with them. Perhaps I'll continue this and create
 that, but there's a long ways to go!
 
+# Sample Image
 ![Not much, but a sample of the one rendered activity](sample.jpg)
 
 # References
